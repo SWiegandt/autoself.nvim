@@ -12,4 +12,4 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```
 
 ## Demo
-[![asciicast](https://asciinema.org/a/617507.svg)](https://asciinema.org/a/617507)
+[![asciicast](https://asciinema.org/a/OKJUPmojjYAPv3wKby02g5sxn.svg)](https://asciinema.org/a/OKJUPmojjYAPv3wKby02g5sxn)
