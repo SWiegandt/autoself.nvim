@@ -23,7 +23,13 @@ function M.setup(opts)
 				vim.api.nvim_create_autocmd("InsertLeave", {
 					group = autoself_group,
 					buffer = ev.bufnr,
-					callback = require("autoself." .. language),
+					callback = function()
+						if vim.opt_local.ft:get() ~= language then
+							return
+						end
+
+						require("autoself." .. language)()
+					end,
 				})
 			end,
 		})
