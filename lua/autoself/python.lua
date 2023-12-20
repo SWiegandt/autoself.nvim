@@ -3,8 +3,9 @@ local function add_self(params, self_name)
 
 	---@diagnostic disable-next-line: missing-parameter
 	local _, first_param, _ = ts.query.parse("python", "(identifier) @idents"):iter_captures(params)()
+	local param_text = first_param and ts.get_node_text(first_param, 0) or ""
 
-	if first_param and string.match(ts.get_node_text(first_param, 0), self_name) then
+	if string.match(param_text, "self") or string.match(param_text, "cls") then
 		return
 	end
 
