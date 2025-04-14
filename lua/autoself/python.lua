@@ -35,16 +35,16 @@ return function()
 	local root = current_node:tree():root()
 
 	---@diagnostic disable-next-line: missing-parameter
-	for _, match, _ in query:iter_matches(root) do
+	for _, matches, _ in query:iter_matches(root) do
 		local self_name = "self"
 		local params = nil
 		local skip = false
 
-		for id, node in pairs(match) do
+		for id, match in ipairs(matches) do
 			local capture = query.captures[id]
 
 			if capture == "decor" then
-				local decor = ts.get_node_text(node, 0)
+				local decor = ts.get_node_text(match[1], 0)
 
 				if string.match(decor, "classmethod") then
 					self_name = "cls"
@@ -52,7 +52,7 @@ return function()
 					skip = true
 				end
 			elseif capture == "params" then
-				params = node
+				params = match[1]
 			end
 		end
 
