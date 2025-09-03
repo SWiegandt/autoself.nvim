@@ -34,8 +34,11 @@ return function()
 
 	local root = current_node:tree():root()
 
-	---@diagnostic disable-next-line: missing-parameter
-	for _, matches, _ in query:iter_matches(root) do
+	for _ in ts.query.parse("python", "(ERROR) @error"):iter_matches(root, 0) do
+		return
+	end
+
+	for _, matches, _ in query:iter_matches(root, 0) do
 		local self_name = "self"
 		local params = nil
 		local skip = false
